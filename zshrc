@@ -45,5 +45,5 @@ source ~/setting/git-prompt.sh
 #GIT_PS1_SHOWUNTRACKEDFILES=true
 
 #prompt
-setopt PROMPT_SUBST ; PS1='%n@%m %F{blue}$(__git_ps1 "(%s) ")%f
+setopt PROMPT_SUBST ; PS1='[%n@%m] %F{blue}$(__git_ps1 "(%s) ")%f
 %F{cyan}[%~]%f \$ '
