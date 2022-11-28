@@ -1,7 +1,18 @@
 #NORMAL SETTING
 
-setopt auto_cd
+#spell error fix
 setopt correct
+
+#completion
+autoload -Uz compinit && compinit
+
+# $cd -[num]
+setopt autopushd
+setopt pushdignoredups
+setopt pushdsilent
+DIRSTACKSIZE=30
+#cd (only dir name)
+setopt auto_cd
 
 PATH="$PATH:/home/fang/bin"
 
@@ -22,7 +33,7 @@ zstyle ':completion:*:*:git:*' script ~/setting/git-completion.bash
 # PROMPT SETTING
 
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
+BASE16_SHELL="$HOME/setting/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         source "$BASE16_SHELL/profile_helper.sh"
