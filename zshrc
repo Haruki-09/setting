@@ -1,37 +1,38 @@
-setopt auto_cd
+#NORMAL SETTING
 
-autoload -U compinit; compinit
+setopt auto_cd
+setopt correct
 
 PATH="$PATH:/home/fang/bin"
 
 # alias
-alias la='ls -a'
-alias ll='ls -la'
-alias ls='ls -1tF'
+alias ls='ls -CtF --color=auto'
+alias la='ls -a --color=auto'
+alias ll='ls -la --color=auto'
 alias vi='vim'
 alias date='date +%Y-%m-%d_%H:%M'
 alias taropen='tar -zxvf'
 alias tarcomp='tar -zcvf'
-# git
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
+
+# git tab completion
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/setting/git-completion.bash
+
+
+# PROMPT SETTING
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         source "$BASE16_SHELL/profile_helper.sh"
-        
-base16_nova
+base16_atelier-lakeside
 
-# prompt
-PROMPT='[%B%F{blue}%n@%m%f%b]
-%F{green}[%~]%f %F{white}$%f '
+# git branch show
+source ~/setting/git-prompt.sh
+#GIT_PS1_SHOWDIRTYSTATE=true
+#GIT_PS1_SHOWUNTRACKEDFILES=true
 
-RPROMPT='%F{cyan}$vcs_info_msg_0_%f'
+#prompt
+setopt PROMPT_SUBST ; PS1='%n@%m %F{blue}$(__git_ps1 "(%s) ")%f
+%F{cyan}[%~]%f \$ '
