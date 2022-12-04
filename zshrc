@@ -1,5 +1,7 @@
 #NORMAL SETTING
 
+setopt print_exit_value
+
 #spell error fix
 setopt correct
 
@@ -7,10 +9,12 @@ setopt correct
 autoload -Uz compinit && compinit
 
 # $cd -[num]
+# dirs -v
 setopt autopushd
 setopt pushdignoredups
 setopt pushdsilent
 DIRSTACKSIZE=30
+
 #cd (only dir name)
 setopt auto_cd
 
@@ -45,5 +49,5 @@ source ~/setting/git-prompt.sh
 #GIT_PS1_SHOWUNTRACKEDFILES=true
 
 #prompt
-setopt PROMPT_SUBST ; PS1='[%n@%m] %F{blue}$(__git_ps1 "(%s) ")%f
-%F{cyan}[%~]%f \$ '
+setopt PROMPT_SUBST ; PS1='%F{039}[%n@%M]%f %F{045}$(__git_ps1 "(%s) ")%f
+%F{043}[%~]%f \$ '
