@@ -18,13 +18,13 @@ DIRSTACKSIZE=30
 #cd (only dir name)
 setopt auto_cd
 
-PATH="$PATH:/home/fang/bin"
+PATH="$PATH:~/bin"
 
 # alias
-alias ls='ls -CtF --color=auto'
-alias la='ls -a --color=auto'
+alias ls='ls -1F --color=auto'
+alias sl='ls -1F --color=auto'
+alias la='ls -1a --color=auto'
 alias ll='ls -la --color=auto'
-alias vi='vim'
 alias date='date +%Y-%m-%d_%H:%M'
 alias taropen='tar -zxvf'
 alias tarcomp='tar -zcvf'
@@ -41,7 +41,7 @@ BASE16_SHELL="$HOME/setting/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         source "$BASE16_SHELL/profile_helper.sh"
-base16_atelier-lakeside
+base16_horizon-terminal-dark
 
 # git branch show
 source ~/setting/git-prompt.sh

@@ -63,4 +63,3 @@ set smartindent
 syntax on
 set backspace=indent,eol,start
 "set background=dark
-

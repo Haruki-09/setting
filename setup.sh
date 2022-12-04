@@ -1,35 +1,36 @@
-/usr/bin/bash
+#!/usr/bin/bash
 
+setting_path=$PWD
 dates=$(date '+%Y-%m-%d_%H:%M')
-setting_path=~/setting
+setting_files=(zshrc bashrc vimrc tmux.conf)
+setting_dirs=(vim tmux)
 
-if [[ -d ~/.tmux ]]; then
-	mv ~/.tmux ~/.tmux_${dates}
-fi
+for setting_file in ${setting_files[@]}; do
 
-if [[ -d ~/.vim ]]; then
-	mv ~/.vim ~/.vim_${dates}
-fi
+	if [[ -f ~/.${setting_file} ]]; then
 
-if [[ -f ~/.zshrc ]]; then
-	mv ~/.zshrc ~/.zshrc_${dates}
-fi
+		if [[ -L ~/.${setting_file} ]]; then
+			rm -i ~/.${setting_file}
+		else
+			mv ~/.${setting_file} ~/.${setting_file}_${dates}
+		fi
+	fi
 
-if [[ -f ~/.bashrc ]]; then
-	mv ~/.bashrc ~/.bashrc_${dates}
-if
+	ln -s ${setting_path}/${setting_file} ~/.${setting_file}
+	
+done
 
-if [[ -f ~/.tmux.conf ]]; then
-	mv ~/.tmux.conf ~/.tmux.conf_${dates}
-fi
+for setting_dir in ${setting_dirs[@]}; do
+	
+	if [[ -d ~/.${setting_dir} ]]; then
 
-if [[ -f ~/.vimrc ]]; then
-	mv ~/.vimrc ~/.vimrc_${dates}
-fi
+		if [[ -L ~/.${setting_dir} ]]; then
+			rm -i ~/.${setting_dir}
+		else
+			mv ~/.${setting_dir} ~/.${setting_dir}_${dates}		
+		fi
+	fi
 
-ln -s ${setting_path}/tmux ~/.tmux
-ln -s ${setting_path}/vim ~/.vim
-ln -s ${setting_path}/zshrc ~/.zshrc
-ln -s ${setting_path}/bashrc ~/.bashrc
-ln -s ${setting_path}/tmux.conf ~/.tmux.conf
-ln -s ${setting_path}/vimrc ~/.vimrc
+	ln -s ${setting_path}/${setting_dir} ~/.${setting_dir}
+
+done
