@@ -61,5 +61,7 @@ set number
 set autoindent
 set smartindent
 syntax on
+set showmatch
+set matchtime=1
 set backspace=indent,eol,start
 "set background=dark
