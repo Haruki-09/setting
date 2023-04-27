@@ -1,5 +1,14 @@
-#NORMAL SETTING
+#docker start(WSL2)
+sudo service docker status >/dev/null 2>&1
+if (( $? != 0)); then
+	sudo service docker start 1>/dev/null
+fi
 
+#oh-my-posh
+eval "$(oh-my-posh init zsh)"
+eval "$(oh-my-posh init zsh --config ~/setting/sonicboom_light.omp.json)"
+
+#NORMAL SETTING
 setopt print_exit_value
 
 #spell error fix
@@ -17,8 +26,6 @@ DIRSTACKSIZE=30
 
 #cd (only dir name)
 setopt auto_cd
-
-PATH="$PATH:~/bin"
 
 # alias
 alias ls='ls -1F --color=auto'
@@ -49,5 +56,5 @@ source ~/setting/git-prompt.sh
 #GIT_PS1_SHOWUNTRACKEDFILES=true
 
 #prompt
-setopt PROMPT_SUBST ; PS1='%F{039}[%n@%M]%f %F{045}$(__git_ps1 "(%s) ")%f
-%F{043}[%~]%f \$ '
+setopt PROMPT_SUBST ; PS1='%F{039}[%n@%M]%f %F{045}$(__git_ps1 "(%s) ")%f%F{043}[%~]%f
+\$ '

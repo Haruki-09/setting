@@ -1,0 +1,4 @@
+#テーマの変更
+1. cd $(brew --prefix oh-my-posh)のthemesディレクトリ内のjsonファイルをホームディレクトリにコピーする
+2. zshrcに以下の行を追加
+   eval "$(oh-my-posh init zsh --config ~/jandedobbeleer.omp.json)"
