@@ -5,6 +5,11 @@ dates=$(date '+%Y-%m-%d_%H:%M')
 setting_files=(zshrc bashrc vimrc tmux.conf)
 setting_dirs=(vim tmux)
 
+backup_dir=~/.setting_bk
+if [[ ! -d ${backup_dir} ]]; then
+	mkdir ${backup_dir}
+fi
+
 for setting_file in ${setting_files[@]}; do
 
 	if [[ -f ~/.${setting_file} ]]; then
@@ -12,7 +17,7 @@ for setting_file in ${setting_files[@]}; do
 		if [[ -L ~/.${setting_file} ]]; then
 			rm -i ~/.${setting_file}
 		else
-			mv ~/.${setting_file} ~/.${setting_file}_${dates}
+			mv ~/.${setting_file} ${backup_dir}/${setting_file}_${dates}
 		fi
 	fi
 
@@ -27,7 +32,7 @@ for setting_dir in ${setting_dirs[@]}; do
 		if [[ -L ~/.${setting_dir} ]]; then
 			rm -i ~/.${setting_dir}
 		else
-			mv ~/.${setting_dir} ~/.${setting_dir}_${dates}		
+			mv ~/.${setting_dir} ${backup_dir}/${setting_dir}_${dates}		
 		fi
 	fi
 

@@ -1,8 +1,8 @@
 #docker start(WSL2)
-sudo service docker status >/dev/null 2>&1
-if (( $? != 0)); then
-	sudo service docker start 1>/dev/null
-fi
+#sudo service docker status >/dev/null 2>&1
+#if (( $? != 0)); then
+#	sudo service docker start 1>/dev/null
+#fi
 
 #oh-my-posh
 eval "$(oh-my-posh init zsh)"
